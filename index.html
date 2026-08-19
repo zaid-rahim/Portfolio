@@ -1,1241 +1,409 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Zaid Rahim - AI/ML Engineer, LLM & NLP Expert, Generative AI Developer. Specializing in LLMs, RAG, Knowledge Graphs, FastAPI, LangChain, and Intelligent Automation.">
-<meta name="keywords" content="AI Engineer, ML Engineer, LLM, NLP, Generative AI, RAG, LangChain, FastAPI, PyTorch, Hugging Face, Pakistan">
-<meta name="author" content="Zaid Rahim">
-<title>Zaid Rahim | AI/ML Engineer & LLM Expert</title>
-
-<!-- Fonts -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
-<!-- Icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-<!-- EmailJS -->
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-
-<style>
-/* ============ RESET & BASE ============ */
-*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
-:root {
-  --bg-primary: #09090B;
-  --bg-secondary: #111827;
-  --bg-card: #161B22;
-  --bg-card2: #1C2333;
-  --coral: #FF6B6B;
-  --mint: #4ECDC4;
-  --pink: #F7A8C4;
-  --purple: #A78BFA;
-  --blue: #60A5FA;
-  --text-primary: #F1F5F9;
-  --text-secondary: #94A3B8;
-  --text-muted: #64748B;
-  --border: rgba(255,255,255,0.07);
-  --glow-coral: rgba(255,107,107,0.15);
-  --glow-mint: rgba(78,205,196,0.15);
-  --glow-pink: rgba(247,168,196,0.15);
-  --radius: 16px;
-  --radius-lg: 20px;
-  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-html { scroll-behavior: smooth; }
-
-body {
-  font-family: 'Inter', sans-serif;
-  background: var(--bg-primary);
-  color: var(--text-primary);
-  line-height: 1.6;
-  overflow-x: hidden;
-}
-
-/* ============ SCROLL PROGRESS ============ */
-#scroll-progress {
-  position: fixed; top: 0; left: 0; height: 3px; width: 0%;
-  background: linear-gradient(90deg, var(--coral), var(--mint), var(--pink));
-  z-index: 9999; transition: width 0.1s;
-}
-
-/* ============ CURSOR GLOW ============ */
-.cursor-glow {
-  position: fixed; width: 400px; height: 400px;
-  background: radial-gradient(circle, rgba(255,107,107,0.06) 0%, transparent 70%);
-  border-radius: 50%; pointer-events: none; z-index: 0;
-  transform: translate(-50%, -50%); transition: 0.1s;
-}
-
-/* ============ NAV ============ */
-nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-  padding: 16px 0;
-  background: rgba(9,9,11,0.85);
-  backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--border);
-  transition: var(--transition);
-}
-.nav-inner {
-  max-width: 1200px; margin: 0 auto; padding: 0 24px;
-  display: flex; align-items: center; justify-content: space-between;
-}
-.nav-logo {
-  font-size: 1.2rem; font-weight: 800; letter-spacing: -0.5px;
-  background: linear-gradient(135deg, var(--coral), var(--mint));
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-  text-decoration: none;
-}
-.nav-links { display: flex; gap: 6px; align-items: center; }
-.nav-links a {
-  color: var(--text-secondary); text-decoration: none;
-  font-size: 0.82rem; font-weight: 500; padding: 6px 12px;
-  border-radius: 8px; transition: var(--transition); letter-spacing: 0.02em;
-}
-.nav-links a:hover { color: var(--text-primary); background: var(--border); }
-.nav-cta {
-  background: linear-gradient(135deg, var(--coral), #FF8E8E) !important;
-  color: white !important; font-weight: 600 !important;
-}
-.nav-cta:hover { transform: translateY(-1px); box-shadow: 0 4px 20px rgba(255,107,107,0.3) !important; background: var(--border) !important; }
-.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
-.hamburger span { width: 22px; height: 2px; background: var(--text-primary); border-radius: 2px; transition: var(--transition); }
-.mobile-menu {
-  display: none; position: fixed; top: 64px; left: 0; right: 0;
-  background: rgba(9,9,11,0.97); backdrop-filter: blur(20px);
-  padding: 20px 24px; flex-direction: column; gap: 8px;
-  border-bottom: 1px solid var(--border); z-index: 999;
-}
-.mobile-menu a { color: var(--text-secondary); text-decoration: none; font-size: 0.95rem; padding: 10px 0; border-bottom: 1px solid var(--border); }
-.mobile-menu.open { display: flex; }
-
-/* ============ SECTIONS ============ */
-section { position: relative; z-index: 1; }
-.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
-.section-pad { padding: 100px 0; }
-.section-label {
-  display: inline-flex; align-items: center; gap: 8px;
-  background: rgba(255,107,107,0.1); border: 1px solid rgba(255,107,107,0.2);
-  color: var(--coral); font-size: 0.75rem; font-weight: 700;
-  letter-spacing: 0.12em; text-transform: uppercase;
-  padding: 6px 14px; border-radius: 100px; margin-bottom: 16px;
-}
-.section-title {
-  font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 800;
-  line-height: 1.2; letter-spacing: -0.02em; margin-bottom: 12px;
-}
-.section-sub { color: var(--text-secondary); font-size: 1rem; max-width: 560px; }
-.gradient-text {
-  background: linear-gradient(135deg, var(--coral), var(--mint));
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-}
-
-/* ============ GLASS CARD ============ */
-.glass {
-  background: rgba(22,27,34,0.8);
-  backdrop-filter: blur(20px);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  transition: var(--transition);
-}
-.glass:hover { border-color: rgba(255,107,107,0.2); transform: translateY(-4px); box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 40px rgba(255,107,107,0.05); }
-
-/* ============ BUTTONS ============ */
-.btn {
-  display: inline-flex; align-items: center; gap: 8px;
-  padding: 12px 24px; border-radius: 12px; font-weight: 600;
-  font-size: 0.9rem; cursor: pointer; text-decoration: none;
-  transition: var(--transition); border: none; font-family: inherit;
-}
-.btn-primary {
-  background: linear-gradient(135deg, var(--coral), #FF8E8E);
-  color: white; box-shadow: 0 4px 20px rgba(255,107,107,0.25);
-}
-.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(255,107,107,0.4); }
-.btn-outline {
-  background: transparent; color: var(--text-primary);
-  border: 1px solid var(--border);
-}
-.btn-outline:hover { background: var(--border); transform: translateY(-2px); }
-.btn-mint {
-  background: linear-gradient(135deg, var(--mint), #45B7AA);
-  color: #09090B; font-weight: 700;
-}
-.btn-mint:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(78,205,196,0.35); }
-
-/* ============ HERO ============ */
-#home {
-  min-height: 100vh; display: flex; align-items: center;
-  padding: 100px 0 60px;
-  background: radial-gradient(ellipse 80% 50% at 50% -10%, rgba(255,107,107,0.08) 0%, transparent 60%);
-}
-.hero-grid {
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 60px; align-items: center;
-}
-.hero-badge {
-  display: inline-flex; align-items: center; gap: 8px;
-  background: rgba(78,205,196,0.08); border: 1px solid rgba(78,205,196,0.2);
-  color: var(--mint); font-size: 0.75rem; font-weight: 700;
-  letter-spacing: 0.1em; text-transform: uppercase;
-  padding: 6px 14px; border-radius: 100px; margin-bottom: 20px;
-}
-.hero-badge::before { content: ''; width: 6px; height: 6px; background: var(--mint); border-radius: 50%; animation: pulse 2s infinite; }
-@keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:0.4;} }
-.hero-name {
-  font-size: clamp(2.8rem, 6vw, 4.5rem); font-weight: 900;
-  letter-spacing: -0.03em; line-height: 1.05; margin-bottom: 8px;
-}
-.hero-typed-wrap { height: 40px; margin-bottom: 20px; }
-.hero-typed {
-  font-size: clamp(1rem, 2.5vw, 1.3rem); font-weight: 600;
-  color: var(--coral); font-family: 'JetBrains Mono', monospace;
-}
-.hero-cursor { color: var(--mint); animation: blink 0.8s step-end infinite; }
-@keyframes blink { 50%{opacity:0;} }
-.hero-desc { color: var(--text-secondary); font-size: 0.95rem; line-height: 1.8; margin-bottom: 32px; max-width: 480px; }
-.hero-buttons { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 36px; }
-.hero-socials { display: flex; gap: 12px; }
-.social-icon {
-  width: 42px; height: 42px; border-radius: 10px;
-  display: flex; align-items: center; justify-content: center;
-  border: 1px solid var(--border); color: var(--text-secondary);
-  text-decoration: none; font-size: 1rem; transition: var(--transition);
-}
-.social-icon:hover { color: var(--coral); border-color: var(--coral); background: var(--glow-coral); transform: translateY(-3px); }
-
-/* Hero Image */
-.hero-image-wrap {
-  display: flex; justify-content: center; align-items: center; position: relative;
-}
-.hero-image-ring {
-  position: relative; width: 320px; height: 320px;
-}
-.hero-image-ring::before {
-  content: ''; position: absolute; inset: -3px;
-  background: linear-gradient(135deg, var(--coral), var(--mint), var(--pink), var(--coral));
-  border-radius: 50%; animation: spin 8s linear infinite; z-index: 0;
-}
-@keyframes spin { to { transform: rotate(360deg); } }
-.hero-image-ring::after {
-  content: ''; position: absolute; inset: 0;
-  background: var(--bg-primary); border-radius: 50%; z-index: 1;
-}
-.hero-img {
-  position: absolute; inset: 6px; border-radius: 50%;
-  object-fit: cover; z-index: 2; width: calc(100% - 12px); height: calc(100% - 12px);
-}
-.hero-float-card {
-  position: absolute; background: rgba(22,27,34,0.95);
-  backdrop-filter: blur(20px); border: 1px solid var(--border);
-  border-radius: 12px; padding: 10px 16px;
-  font-size: 0.8rem; font-weight: 600; display: flex;
-  align-items: center; gap: 8px; white-space: nowrap; z-index: 10;
-  animation: float 3s ease-in-out infinite;
-}
-@keyframes float { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-8px);} }
-.hero-float-card.card1 { top: 10%; right: -20%; animation-delay: 0s; }
-.hero-float-card.card2 { bottom: 20%; left: -25%; animation-delay: 1.5s; }
-.float-dot { width: 8px; height: 8px; border-radius: 50%; }
-
-/* Stats row */
-.hero-stats { display: flex; gap: 32px; margin-top: 40px; }
-.stat { text-align: center; }
-.stat-num { font-size: 1.8rem; font-weight: 900; line-height: 1; }
-.stat-lbl { font-size: 0.72rem; color: var(--text-muted); letter-spacing: 0.06em; margin-top: 2px; }
-
-/* ============ ABOUT ============ */
-#about { background: var(--bg-secondary); }
-.about-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 60px; align-items: center; }
-.about-img-wrap { position: relative; }
-.about-img-box {
-  border-radius: var(--radius-lg); overflow: hidden;
-  border: 1px solid var(--border); position: relative;
-}
-.about-img-box img { width: 100%; display: block; filter: brightness(0.85); }
-.about-img-box::after {
-  content: ''; position: absolute; inset: 0;
-  background: linear-gradient(to top, rgba(255,107,107,0.15), transparent);
-}
-.about-tag-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 24px; }
-.about-tag {
-  background: var(--bg-card); border: 1px solid var(--border);
-  border-radius: 10px; padding: 10px 14px;
-  font-size: 0.8rem; font-weight: 600; color: var(--text-secondary);
-  display: flex; align-items: center; gap: 8px;
-}
-.about-tag i { color: var(--coral); }
-.about-text p { color: var(--text-secondary); margin-bottom: 16px; line-height: 1.8; font-size: 0.95rem; }
-
-/* ============ EDUCATION & EXPERIENCE ============ */
-.timeline { position: relative; padding-left: 28px; }
-.timeline::before {
-  content: ''; position: absolute; left: 10px; top: 0; bottom: 0;
-  width: 2px; background: linear-gradient(to bottom, var(--coral), var(--mint), transparent);
-}
-.timeline-item { position: relative; margin-bottom: 32px; }
-.timeline-dot {
-  position: absolute; left: -22px; top: 6px;
-  width: 14px; height: 14px; border-radius: 50%;
-  background: var(--coral); border: 2px solid var(--bg-primary);
-  box-shadow: 0 0 12px var(--coral);
-}
-.timeline-card { padding: 24px; }
-.timeline-date {
-  font-size: 0.75rem; font-weight: 700; color: var(--coral);
-  letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 6px;
-  font-family: 'JetBrains Mono', monospace;
-}
-.timeline-title { font-size: 1.05rem; font-weight: 700; margin-bottom: 2px; }
-.timeline-org { font-size: 0.85rem; color: var(--mint); font-weight: 600; margin-bottom: 12px; }
-.timeline-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
-.tag {
-  background: rgba(255,107,107,0.08); border: 1px solid rgba(255,107,107,0.15);
-  color: var(--text-secondary); font-size: 0.72rem; font-weight: 600;
-  padding: 3px 10px; border-radius: 100px;
-}
-.tag.mint { background: rgba(78,205,196,0.08); border-color: rgba(78,205,196,0.15); }
-.tag.purple { background: rgba(167,139,250,0.08); border-color: rgba(167,139,250,0.15); color: var(--purple); }
-.coursework-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-top: 10px; }
-.cw-item {
-  background: rgba(78,205,196,0.05); border: 1px solid rgba(78,205,196,0.1);
-  border-radius: 6px; padding: 4px 10px; font-size: 0.72rem;
-  color: var(--text-secondary); text-align: center;
-}
-
-/* ============ RESEARCH ============ */
-#research { background: var(--bg-secondary); }
-.research-card { padding: 36px; display: grid; grid-template-columns: 1fr 1.2fr; gap: 40px; align-items: center; }
-.research-badge {
-  display: inline-flex; align-items: center; gap: 8px;
-  background: rgba(167,139,250,0.1); border: 1px solid rgba(167,139,250,0.2);
-  color: var(--purple); font-size: 0.72rem; font-weight: 700;
-  letter-spacing: 0.1em; text-transform: uppercase;
-  padding: 5px 12px; border-radius: 100px; margin-bottom: 16px;
-}
-.research-title { font-size: 1.1rem; font-weight: 700; line-height: 1.4; margin-bottom: 14px; }
-.research-abstract { color: var(--text-secondary); font-size: 0.88rem; line-height: 1.7; margin-bottom: 18px; }
-.research-visual {
-  background: linear-gradient(135deg, rgba(167,139,250,0.08), rgba(78,205,196,0.05));
-  border: 1px solid rgba(167,139,250,0.15); border-radius: 14px;
-  padding: 30px; text-align: center;
-}
-.research-icon { font-size: 4rem; margin-bottom: 12px; opacity: 0.8; }
-.research-tech-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 16px; }
-.research-tech-item {
-  background: rgba(167,139,250,0.06); border: 1px solid rgba(167,139,250,0.1);
-  border-radius: 8px; padding: 6px 10px; font-size: 0.75rem;
-  color: var(--purple); font-weight: 600; text-align: center;
-}
-
-/* ============ SKILLS ============ */
-.skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-.skill-card { padding: 24px; }
-.skill-card-icon {
-  width: 44px; height: 44px; border-radius: 12px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 1.2rem; margin-bottom: 14px;
-}
-.skill-card-title { font-size: 0.95rem; font-weight: 700; margin-bottom: 14px; }
-.skill-pills { display: flex; flex-wrap: wrap; gap: 6px; }
-.skill-pill {
-  background: rgba(255,255,255,0.04); border: 1px solid var(--border);
-  border-radius: 100px; padding: 4px 12px;
-  font-size: 0.75rem; font-weight: 500; color: var(--text-secondary);
-  transition: var(--transition);
-}
-.skill-pill:hover { background: rgba(255,107,107,0.08); border-color: rgba(255,107,107,0.2); color: var(--coral); }
-.icon-coral { background: rgba(255,107,107,0.1); color: var(--coral); }
-.icon-mint { background: rgba(78,205,196,0.1); color: var(--mint); }
-.icon-pink { background: rgba(247,168,196,0.1); color: var(--pink); }
-.icon-purple { background: rgba(167,139,250,0.1); color: var(--purple); }
-.icon-blue { background: rgba(96,165,250,0.1); color: var(--blue); }
-
-/* ============ SERVICES ============ */
-#services { background: var(--bg-secondary); }
-.services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
-.service-card { padding: 24px; text-align: center; cursor: default; }
-.service-card:hover { box-shadow: 0 0 30px rgba(255,107,107,0.08); }
-.service-icon { font-size: 1.8rem; margin-bottom: 12px; }
-.service-title { font-size: 0.9rem; font-weight: 700; margin-bottom: 8px; }
-.service-desc { font-size: 0.78rem; color: var(--text-secondary); line-height: 1.6; }
-
-/* ============ PROJECTS ============ */
-.featured-grid { display: grid; gap: 24px; }
-.project-card { padding: 32px; display: grid; grid-template-columns: 1.3fr 1fr; gap: 36px; align-items: center; }
-.project-card.reverse { grid-template-columns: 1fr 1.3fr; }
-.project-card.reverse .project-visual { order: -1; }
-.project-label {
-  display: inline-flex; align-items: center; gap: 6px;
-  background: rgba(78,205,196,0.08); border: 1px solid rgba(78,205,196,0.15);
-  color: var(--mint); font-size: 0.7rem; font-weight: 700;
-  letter-spacing: 0.1em; text-transform: uppercase;
-  padding: 4px 10px; border-radius: 100px; margin-bottom: 12px;
-}
-.project-title { font-size: 1.3rem; font-weight: 800; margin-bottom: 10px; }
-.project-desc { color: var(--text-secondary); font-size: 0.88rem; line-height: 1.75; margin-bottom: 16px; }
-.project-tech { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 20px; }
-.project-links { display: flex; gap: 10px; }
-.project-visual {
-  border-radius: 14px; overflow: hidden;
-  background: linear-gradient(135deg, rgba(255,107,107,0.05), rgba(78,205,196,0.05));
-  border: 1px solid var(--border); min-height: 200px;
-  display: flex; align-items: center; justify-content: center;
-  flex-direction: column; gap: 12px; padding: 24px; text-align: center;
-  transition: var(--transition);
-}
-.project-visual:hover { background: linear-gradient(135deg, rgba(255,107,107,0.08), rgba(78,205,196,0.08)); }
-.project-visual-icon { font-size: 3.5rem; }
-.project-visual-title { font-size: 0.85rem; font-weight: 600; color: var(--text-secondary); }
-.project-stats { display: flex; gap: 16px; margin-top: 8px; }
-.project-stat { font-size: 0.75rem; color: var(--mint); font-family: 'JetBrains Mono', monospace; font-weight: 600; }
-
-.other-projects { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-top: 48px; }
-.other-card { padding: 24px; }
-.other-card-title { font-size: 1rem; font-weight: 700; margin-bottom: 8px; display: flex; align-items: center; gap: 10px; }
-.other-card-desc { font-size: 0.83rem; color: var(--text-secondary); line-height: 1.65; margin-bottom: 14px; }
-
-/* ============ CERTIFICATIONS ============ */
-.cert-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 20px; }
-.cert-card { padding: 28px; display: flex; gap: 20px; align-items: flex-start; }
-.cert-badge {
-  width: 56px; height: 56px; min-width: 56px; border-radius: 14px;
-  background: linear-gradient(135deg, #FF6B6B, #FF8E8E);
-  display: flex; align-items: center; justify-content: center; font-size: 1.5rem;
-}
-.cert-provider { font-size: 0.72rem; font-weight: 700; color: var(--coral); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px; }
-.cert-name { font-size: 1rem; font-weight: 700; margin-bottom: 4px; }
-.cert-date { font-size: 0.78rem; color: var(--text-muted); display: flex; align-items: center; gap: 6px; }
-
-/* ============ LEADERSHIP ============ */
-#leadership { background: var(--bg-secondary); }
-.leadership-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; }
-.leadership-card { padding: 24px; display: flex; gap: 16px; align-items: flex-start; }
-.leadership-icon { font-size: 1.5rem; margin-top: 2px; }
-.leadership-title { font-size: 0.95rem; font-weight: 700; margin-bottom: 4px; }
-.leadership-desc { font-size: 0.82rem; color: var(--text-secondary); line-height: 1.6; }
-
-/* ============ CONTACT ============ */
-.contact-grid { display: grid; grid-template-columns: 1fr 1.3fr; gap: 40px; }
-.contact-info { padding: 32px; }
-.contact-info h3 { font-size: 1.4rem; font-weight: 800; margin-bottom: 8px; }
-.contact-info p { color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 28px; }
-.contact-item { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
-.contact-item-icon {
-  width: 40px; height: 40px; border-radius: 10px;
-  display: flex; align-items: center; justify-content: center;
-  background: rgba(255,107,107,0.08); border: 1px solid rgba(255,107,107,0.15);
-  color: var(--coral); font-size: 0.9rem;
-}
-.contact-item-text a { color: var(--text-primary); text-decoration: none; font-size: 0.88rem; }
-.contact-item-text a:hover { color: var(--coral); }
-.contact-item-label { font-size: 0.72rem; color: var(--text-muted); }
-
-.contact-form-wrap { padding: 32px; }
-.form-group { margin-bottom: 16px; }
-.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-label { display: block; font-size: 0.78rem; font-weight: 600; color: var(--text-secondary); margin-bottom: 6px; letter-spacing: 0.04em; }
-input, textarea, select {
-  width: 100%; background: rgba(255,255,255,0.03); border: 1px solid var(--border);
-  border-radius: 10px; padding: 12px 14px; color: var(--text-primary);
-  font-family: inherit; font-size: 0.9rem; transition: var(--transition); outline: none;
-}
-input:focus, textarea:focus { border-color: var(--coral); box-shadow: 0 0 0 3px rgba(255,107,107,0.08); }
-textarea { resize: vertical; min-height: 120px; }
-.form-success { display: none; text-align: center; padding: 16px; background: rgba(78,205,196,0.08); border: 1px solid rgba(78,205,196,0.2); border-radius: 10px; color: var(--mint); font-weight: 600; margin-top: 12px; }
-
-/* ============ FOOTER ============ */
-footer {
-  background: var(--bg-card); border-top: 1px solid var(--border);
-  padding: 32px 0; text-align: center;
-}
-.footer-inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: gap: 16px; }
-.footer-logo {
-  font-size: 1.1rem; font-weight: 800;
-  background: linear-gradient(135deg, var(--coral), var(--mint));
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-}
-.footer-copy { font-size: 0.82rem; color: var(--text-muted); }
-.footer-socials { display: flex; gap: 10px; }
-
-/* ============ BACK TO TOP ============ */
-#back-top {
-  position: fixed; bottom: 24px; right: 24px; z-index: 500;
-  width: 44px; height: 44px; border-radius: 12px;
-  background: linear-gradient(135deg, var(--coral), #FF8E8E);
-  display: flex; align-items: center; justify-content: center;
-  color: white; cursor: pointer; border: none;
-  opacity: 0; pointer-events: none; transition: var(--transition);
-  box-shadow: 0 4px 20px rgba(255,107,107,0.3);
-}
-#back-top.visible { opacity: 1; pointer-events: auto; }
-#back-top:hover { transform: translateY(-3px); }
-
-/* ============ REVEAL ANIMATIONS ============ */
-.reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
-.reveal.visible { opacity: 1; transform: translateY(0); }
-
-/* ============ DIVIDER ============ */
-.section-divider { height: 1px; background: linear-gradient(90deg, transparent, var(--border), transparent); margin: 0; }
-
-/* ============ RESPONSIVE ============ */
-@media (max-width: 900px) {
-  .hero-grid, .about-grid, .project-card, .project-card.reverse, .contact-grid, .research-card { grid-template-columns: 1fr; }
-  .hero-image-wrap { display: none; }
-  .project-card.reverse .project-visual { order: 0; }
-  .nav-links { display: none; }
-  .hamburger { display: flex; }
-  .hero-float-card { display: none; }
-  .form-row { grid-template-columns: 1fr; }
-  .coursework-grid { grid-template-columns: 1fr 1fr; }
-}
-@media (max-width: 600px) {
-  .section-pad { padding: 70px 0; }
-  .hero-buttons { flex-direction: column; }
-  .hero-stats { gap: 20px; }
-  .cert-grid { grid-template-columns: 1fr; }
-  .skills-grid { grid-template-columns: 1fr; }
-}
-</style>
-</head>
-<body>
-
-<!-- Scroll Progress -->
-<div id="scroll-progress"></div>
-<!-- Cursor Glow -->
-<div class="cursor-glow" id="cursorGlow"></div>
-
-<!-- ============ NAV ============ -->
-<nav>
-  <div class="nav-inner">
-    <a href="#home" class="nav-logo">ZR</a>
-    <div class="nav-links">
-      <a href="#home">Home</a>
-      <a href="#about">About</a>
-      <a href="#experience">Experience</a>
-      <a href="#research">Research</a>
-      <a href="#skills">Skills</a>
-      <a href="#services">Services</a>
-      <a href="#projects">Projects</a>
-      <a href="#certifications">Certs</a>
-      <a href="#contact" class="nav-cta">Contact</a>
-    </div>
-    <div class="hamburger" id="hamburger">
-      <span></span><span></span><span></span>
-    </div>
-  </div>
-</nav>
-
-<!-- Mobile Menu -->
-<div class="mobile-menu" id="mobileMenu">
-  <a href="#home">Home</a>
-  <a href="#about">About</a>
-  <a href="#experience">Experience</a>
-  <a href="#research">Research</a>
-  <a href="#skills">Skills</a>
-  <a href="#services">Services</a>
-  <a href="#projects">Projects</a>
-  <a href="#certifications">Certifications</a>
-  <a href="#contact">Contact</a>
-</div>
-
-<!-- ============ HERO ============ -->
-<section id="home">
-  <div class="container">
-    <div class="hero-grid">
-      <!-- Text -->
-      <div>
-        <div class="hero-badge">
-          <span>Available for Opportunities</span>
-        </div>
-        <h1 class="hero-name">
-          <span class="gradient-text">Zaid</span><br>Rahim
-        </h1>
-        <div class="hero-typed-wrap">
-          <span class="hero-typed" id="typedText"></span><span class="hero-cursor">|</span>
-        </div>
-        <p class="hero-desc">
-          AI/ML Engineer & LLM Expert specializing in Large Language Models, Generative AI, RAG pipelines, and Intelligent Automation. I build AI systems from the ground up — from GPT models trained from scratch to production-ready FastAPI deployments.
-        </p>
-        <div class="hero-buttons">
-          <a href="#projects" class="btn btn-primary"><i class="fas fa-rocket"></i> View Projects</a>
-          <a href="https://github.com/Zaid-Rahim" target="_blank" class="btn btn-outline"><i class="fab fa-github"></i> GitHub</a>
-          <a href="#contact" class="btn btn-mint"><i class="fas fa-envelope"></i> Contact Me</a>
-        </div>
-        <div class="hero-socials">
-          <a href="https://github.com/Zaid-Rahim" target="_blank" class="social-icon" title="GitHub"><i class="fab fa-github"></i></a>
-          <a href="https://linkedin.com/in/zaid-rahim-zaid" target="_blank" class="social-icon" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-          <a href="mailto:zaidrahim162@gmail.com" class="social-icon" title="Email"><i class="fas fa-envelope"></i></a>
-        </div>
-        <div class="hero-stats">
-          <div class="stat"><div class="stat-num gradient-text">6+</div><div class="stat-lbl">Projects</div></div>
-          <div class="stat"><div class="stat-num gradient-text">10.8M</div><div class="stat-lbl">GPT Params</div></div>
-          <div class="stat"><div class="stat-num gradient-text">5K+</div><div class="stat-lbl">Docs Processed</div></div>
-          <div class="stat"><div class="stat-num gradient-text">2</div><div class="stat-lbl">HF Certs</div></div>
-        </div>
-      </div>
-
-      <!-- Image -->
-      <div class="hero-image-wrap">
-        <div class="hero-image-ring">
-          <img src="https://i.postimg.cc/26dytPYY/picofme-(2).png" alt="Zaid Rahim" class="hero-img">
-        </div>
-        <div class="hero-float-card card1">
-          <span class="float-dot" style="background:var(--mint)"></span>
-          <span style="font-size:0.78rem">LLM Fine-Tuning ✓</span>
-        </div>
-        <div class="hero-float-card card2">
-          <span class="float-dot" style="background:var(--coral)"></span>
-          <span style="font-size:0.78rem">RAG Pipeline ✓</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="section-divider"></div>
-
-<!-- ============ ABOUT ============ -->
-<section id="about" class="section-pad">
-  <div class="container">
-    <div class="about-grid">
-      <div>
-        <div class="about-img-box">
-          <img src="https://i.postimg.cc/26dytPYY/picofme-(2).png" alt="Zaid Rahim">
-        </div>
-        <div class="about-tag-grid">
-          <div class="about-tag"><i class="fas fa-brain"></i> LLM Engineer</div>
-          <div class="about-tag"><i class="fas fa-robot"></i> AI/ML Engineer</div>
-          <div class="about-tag"><i class="fas fa-code"></i> Backend Dev</div>
-          <div class="about-tag"><i class="fas fa-flask"></i> AI Researcher</div>
-        </div>
-      </div>
-      <div class="about-text reveal">
-        <div class="section-label"><i class="fas fa-user"></i> About Me</div>
-        <h2 class="section-title">Building AI Systems<br><span class="gradient-text">From First Principles</span></h2>
-        <p>I'm a Computer Science graduate from FAST National University of Computer and Emerging Sciences (FAST NUCES), Islamabad, with a deep passion for Artificial Intelligence, Large Language Models, and Generative AI.</p>
-        <p>What sets me apart is that I don't just use AI frameworks — I build from scratch. I've implemented GPT and Transformer architectures from the ground up in PyTorch, fine-tuned LLMs on domain-specific corpora, and shipped production-grade AI systems end-to-end.</p>
-        <p>My work spans LLMs, NLP, Computer Vision, RAG systems, Knowledge Graphs, and Intelligent Automation. I'm currently executing a structured AI/LLM engineering roadmap, actively working with LangChain, LangGraph, agentic workflows, and voice AI.</p>
-        <div style="display:flex;gap:12px;margin-top:24px;flex-wrap:wrap;">
-          <a href="https://github.com/Zaid-Rahim" target="_blank" class="btn btn-outline"><i class="fab fa-github"></i> GitHub</a>
-          <a href="https://linkedin.com/in/zaid-rahim-zaid" target="_blank" class="btn btn-primary"><i class="fab fa-linkedin"></i> LinkedIn</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="section-divider"></div>
-
-<!-- ============ EXPERIENCE & EDUCATION ============ -->
-<section id="experience" class="section-pad" style="background:var(--bg-primary);">
-  <div class="container">
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:60px;" class="exp-edu-grid">
-      <!-- Education -->
-      <div class="reveal">
-        <div class="section-label"><i class="fas fa-graduation-cap"></i> Education</div>
-        <h2 class="section-title" style="font-size:1.8rem;">Academic<br><span class="gradient-text">Background</span></h2>
-        <div class="timeline" style="margin-top:32px;">
-          <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="glass timeline-card">
-              <div class="timeline-date">Sep 2022 — Jun 2026</div>
-              <div class="timeline-title">BS Computer Science</div>
-              <div class="timeline-org">FAST National University, Islamabad</div>
-              <div class="coursework-grid">
-                <div class="cw-item">Machine Learning</div>
-                <div class="cw-item">Artificial Intelligence</div>
-                <div class="cw-item">Database Systems</div>
-                <div class="cw-item">Parallel Computing</div>
-                <div class="cw-item">Operating Systems</div>
-                <div class="cw-item">Digital Image Processing</div>
-                <div class="cw-item">Applied ML</div>
-                <div class="cw-item">Data Structures</div>
-                <div class="cw-item">Algorithms</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Experience -->
-      <div class="reveal">
-        <div class="section-label"><i class="fas fa-briefcase"></i> Experience</div>
-        <h2 class="section-title" style="font-size:1.8rem;">Professional<br><span class="gradient-text">Journey</span></h2>
-        <div class="timeline" style="margin-top:32px;">
-          <div class="timeline-item">
-            <div class="timeline-dot" style="background:var(--mint);box-shadow:0 0 12px var(--mint);"></div>
-            <div class="glass timeline-card">
-              <div class="timeline-date" style="color:var(--mint);">Jun 2023 — Aug 2023</div>
-              <div class="timeline-title">Backend Intern</div>
-              <div class="timeline-org">Medic Patron LLP · Islamabad</div>
-              <div class="timeline-tags">
-                <span class="tag mint">FastAPI</span><span class="tag mint">REST APIs</span>
-                <span class="tag mint">Database Design</span><span class="tag mint">Full SDLC</span>
-              </div>
-            </div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-dot" style="background:var(--pink);box-shadow:0 0 12px var(--pink);"></div>
-            <div class="glass timeline-card">
-              <div class="timeline-date" style="color:var(--pink);">Feb 2024 — Jun 2024</div>
-              <div class="timeline-title">Teaching Assistant</div>
-              <div class="timeline-org">FAST NUCES · Islamabad</div>
-              <p style="font-size:0.82rem;color:var(--text-secondary);margin-top:8px;">Guided 30+ students in Operating Systems & Intro to CS. Evaluated assignments, conducted debugging sessions and exam preparation.</p>
-              <div class="timeline-tags">
-                <span class="tag purple">Operating Systems</span><span class="tag purple">Mentoring</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="section-divider"></div>
-
-<!-- ============ RESEARCH ============ -->
-<section id="research" class="section-pad">
-  <div class="container">
-    <div style="text-align:center;margin-bottom:48px;" class="reveal">
-      <div class="section-label" style="margin:0 auto 16px;display:inline-flex;"><i class="fas fa-microscope"></i> Research</div>
-      <h2 class="section-title">Academic <span class="gradient-text">Research</span></h2>
-    </div>
-    <div class="glass research-card reveal">
-      <div>
-        <div class="research-badge"><i class="fas fa-atom"></i> Research Paper</div>
-        <h3 class="research-title">Evaluating the Performance, Quality, and Noise-Resilience of Quantum Random Number Generators via Qiskit Aer Simulators</h3>
-        <p class="research-abstract">A research study evaluating quantum random number generators (QRNGs) using IBM's Qiskit Aer simulation framework. The research focuses on assessing the statistical quality, performance benchmarks, and noise-resilience properties of QRNGs across various quantum circuit configurations, leveraging Shannon Entropy metrics and noise mitigation techniques.</p>
-        <div class="timeline-tags">
-          <span class="tag purple">Quantum Computing</span>
-          <span class="tag purple">Qiskit Aer</span>
-          <span class="tag purple">QRNG</span>
-          <span class="tag purple">Noise Mitigation</span>
-          <span class="tag purple">Shannon Entropy</span>
-          <span class="tag purple">IBM Quantum</span>
-        </div>
-      </div>
-      <div class="research-visual">
-        <div class="research-icon">⚛️</div>
-        <div style="font-weight:700;font-size:0.95rem;color:var(--purple);margin-bottom:8px;">Quantum Research</div>
-        <div style="font-size:0.8rem;color:var(--text-secondary);margin-bottom:16px;">Qiskit Aer · Quantum Circuits · Statistical Analysis</div>
-        <div class="research-tech-grid">
-          <div class="research-tech-item">Qiskit</div>
-          <div class="research-tech-item">IBM Quantum</div>
-          <div class="research-tech-item">Shannon Entropy</div>
-          <div class="research-tech-item">Noise Analysis</div>
-          <div class="research-tech-item">Python</div>
-          <div class="research-tech-item">Statistical QA</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="section-divider"></div>
-
-<!-- ============ SKILLS ============ -->
-<section id="skills" class="section-pad" style="background:var(--bg-primary);">
-  <div class="container">
-    <div style="text-align:center;margin-bottom:48px;" class="reveal">
-      <div class="section-label" style="margin:0 auto 16px;display:inline-flex;"><i class="fas fa-code"></i> Skills</div>
-      <h2 class="section-title">Technical <span class="gradient-text">Expertise</span></h2>
-      <p class="section-sub" style="margin:0 auto;">Technologies and tools I work with to build intelligent AI systems.</p>
-    </div>
-    <div class="skills-grid">
-      <div class="glass skill-card reveal">
-        <div class="skill-card-icon icon-coral"><i class="fas fa-brain"></i></div>
-        <div class="skill-card-title">Artificial Intelligence</div>
-        <div class="skill-pills">
-          <span class="skill-pill">LLMs</span><span class="skill-pill">Generative AI</span>
-          <span class="skill-pill">NLP</span><span class="skill-pill">Prompt Engineering</span>
-          <span class="skill-pill">AI Agents</span><span class="skill-pill">Intelligent Automation</span>
-        </div>
-      </div>
-      <div class="glass skill-card reveal">
-        <div class="skill-card-icon icon-mint"><i class="fas fa-robot"></i></div>
-        <div class="skill-card-title">LLM Technologies</div>
-        <div class="skill-pills">
-          <span class="skill-pill">Hugging Face</span><span class="skill-pill">LoRA / QLoRA</span>
-          <span class="skill-pill">RAG</span><span class="skill-pill">Semantic Search</span>
-          <span class="skill-pill">Knowledge Graphs</span><span class="skill-pill">LangChain</span>
-          <span class="skill-pill">LangGraph</span><span class="skill-pill">LlamaIndex</span>
-        </div>
-      </div>
-      <div class="glass skill-card reveal">
-        <div class="skill-card-icon icon-purple"><i class="fas fa-network-wired"></i></div>
-        <div class="skill-card-title">Machine Learning</div>
-        <div class="skill-pills">
-          <span class="skill-pill">PyTorch</span><span class="skill-pill">TensorFlow</span>
-          <span class="skill-pill">Scikit-learn</span><span class="skill-pill">CNN</span>
-          <span class="skill-pill">Computer Vision</span><span class="skill-pill">Transformer</span>
-          <span class="skill-pill">Neural Networks</span><span class="skill-pill">Applied ML</span>
-        </div>
-      </div>
-      <div class="glass skill-card reveal">
-        <div class="skill-card-icon icon-blue"><i class="fas fa-code"></i></div>
-        <div class="skill-card-title">Programming</div>
-        <div class="skill-pills">
-          <span class="skill-pill">Python</span><span class="skill-pill">FastAPI</span>
-          <span class="skill-pill">REST APIs</span><span class="skill-pill">Async</span>
-          <span class="skill-pill">OOP</span><span class="skill-pill">PHP</span>
-        </div>
-      </div>
-      <div class="glass skill-card reveal">
-        <div class="skill-card-icon icon-pink"><i class="fas fa-database"></i></div>
-        <div class="skill-card-title">Data & Databases</div>
-        <div class="skill-pills">
-          <span class="skill-pill">MySQL</span><span class="skill-pill">PostgreSQL</span>
-          <span class="skill-pill">MongoDB</span><span class="skill-pill">Oracle</span>
-          <span class="skill-pill">NumPy</span><span class="skill-pill">Pandas</span>
-          <span class="skill-pill">Matplotlib</span>
-        </div>
-      </div>
-      <div class="glass skill-card reveal">
-        <div class="skill-card-icon icon-coral"><i class="fas fa-tools"></i></div>
-        <div class="skill-card-title">Tools & Cloud</div>
-        <div class="skill-pills">
-          <span class="skill-pill">Docker</span><span class="skill-pill">Git</span>
-          <span class="skill-pill">Linux</span><span class="skill-pill">Azure (Learning)</span>
-          <span class="skill-pill">GCP (Learning)</span><span class="skill-pill">VS Code</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="section-divider"></div>
-
-<!-- ============ SERVICES ============ -->
-<section id="services" class="section-pad">
-  <div class="container">
-    <div style="text-align:center;margin-bottom:48px;" class="reveal">
-      <div class="section-label" style="margin:0 auto 16px;display:inline-flex;"><i class="fas fa-cog"></i> Services</div>
-      <h2 class="section-title">What I <span class="gradient-text">Offer</span></h2>
-    </div>
-    <div class="services-grid">
-      <div class="glass service-card reveal"><div class="service-icon">🤖</div><div class="service-title">AI & ML Development</div><div class="service-desc">End-to-end ML pipelines from data prep to model deployment.</div></div>
-      <div class="glass service-card reveal"><div class="service-icon">🧠</div><div class="service-title">LLM Development</div><div class="service-desc">Custom LLM fine-tuning with LoRA/QLoRA on domain-specific data.</div></div>
-      <div class="glass service-card reveal"><div class="service-icon">⚡</div><div class="service-title">Custom GPT Development</div><div class="service-desc">Decoder-only GPT models trained from scratch for any language or domain.</div></div>
-      <div class="glass service-card reveal"><div class="service-icon">🔍</div><div class="service-title">RAG Systems</div><div class="service-desc">Production-grade Retrieval-Augmented Generation pipelines with vector search.</div></div>
-      <div class="glass service-card reveal"><div class="service-icon">🕸️</div><div class="service-title">Knowledge Graphs</div><div class="service-desc">Knowledge graph construction and integration for grounded AI responses.</div></div>
-      <div class="glass service-card reveal"><div class="service-icon">🕵️</div><div class="service-title">AI Agents</div><div class="service-desc">Agentic workflows using LangChain and LangGraph for multi-step reasoning.</div></div>
-      <div class="glass service-card reveal"><div class="service-icon">💬</div><div class="service-title">AI Chatbots</div><div class="service-desc">Intelligent conversational AI systems integrated with your data.</div></div>
-      <div class="glass service-card reveal"><div class="service-icon">🎯</div><div class="service-title">Prompt Engineering</div><div class="service-desc">Systematic prompt design and optimization for LLM-powered applications.</div></div>
-      <div class="glass service-card reveal"><div class="service-icon">🚀</div><div class="service-title">FastAPI Backends</div><div class="service-desc">Scalable, production-ready REST APIs for AI model inference and integration.</div></div>
-      <div class="glass service-card reveal"><div class="service-icon">📝</div><div class="service-title">NLP Solutions</div><div class="service-desc">Text classification, summarization, NER, QA, and semantic search systems.</div></div>
-      <div class="glass service-card reveal"><div class="service-icon">👁️</div><div class="service-title">Computer Vision</div><div class="service-desc">CNN-based image classification, object detection, and OCR pipelines.</div></div>
-      <div class="glass service-card reveal"><div class="service-icon">🐍</div><div class="service-title">Python Automation</div><div class="service-desc">Intelligent Python scripts and automation workflows powered by AI.</div></div>
-    </div>
-  </div>
-</section>
-
-<div class="section-divider"></div>
-
-<!-- ============ PROJECTS ============ -->
-<section id="projects" class="section-pad" style="background:var(--bg-primary);">
-  <div class="container">
-    <div style="text-align:center;margin-bottom:48px;" class="reveal">
-      <div class="section-label" style="margin:0 auto 16px;display:inline-flex;"><i class="fas fa-rocket"></i> Projects</div>
-      <h2 class="section-title">Featured <span class="gradient-text">Work</span></h2>
-      <p class="section-sub" style="margin:0 auto;">Real systems built from the ground up — not tutorials, not demos.</p>
-    </div>
-
-    <div class="featured-grid">
-      <!-- Project 1 -->
-      <div class="glass project-card reveal">
-        <div>
-          <div class="project-label"><i class="fas fa-star"></i> Featured</div>
-          <h3 class="project-title">AI-Powered Legal Research Assistant</h3>
-          <p class="project-desc">Production-grade RAG system over 5000+ Pakistani legal documents. Fine-tuned an SLM with LoRA/QLoRA, built LangChain agent with knowledge graph integration, deployed via FastAPI — end-to-end from data to inference.</p>
-          <div class="project-tech">
-            <span class="tag">RAG</span><span class="tag">LLM Fine-Tuning</span>
-            <span class="tag mint">LangChain</span><span class="tag mint">FastAPI</span>
-            <span class="tag purple">Knowledge Graph</span><span class="tag purple">Semantic Search</span>
-          </div>
-          <div class="project-links">
-            <a href="https://github.com/zaid-rahim/AI-Powered-Legal-Research-Assistant" target="_blank" class="btn btn-outline" style="font-size:0.82rem;padding:9px 18px;"><i class="fab fa-github"></i> GitHub</a>
-          </div>
-        </div>
-        <div class="project-visual">
-          <div class="project-visual-icon">⚖️</div>
-          <div class="project-visual-title">Legal AI Assistant</div>
-          <div class="project-stats">
-            <span class="project-stat">5K+ Docs</span>
-            <span class="project-stat">RAG + KG</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Project 2 -->
-      <div class="glass project-card reverse reveal">
-        <div>
-          <div class="project-label" style="background:rgba(167,139,250,0.08);border-color:rgba(167,139,250,0.15);color:var(--purple);"><i class="fas fa-fire"></i> Built from Scratch</div>
-          <h3 class="project-title">Urdu Mini GPT</h3>
-          <p class="project-desc">A decoder-only GPT (~10.8M parameters) built entirely from scratch in PyTorch — no pretrained weights, no external tokenizers. Trained on Urdu poetry corpus from Rekhta. Generates coherent Urdu poetry from a single start token.</p>
-          <div class="project-tech">
-            <span class="tag">PyTorch</span><span class="tag">Decoder-only GPT</span>
-            <span class="tag purple">10.8M Params</span><span class="tag purple">Val Loss 1.53</span>
-            <span class="tag mint">Self-Attention</span>
-          </div>
-          <div class="project-links">
-            <a href="https://github.com/zaid-rahim/urdu-mini-gpt" target="_blank" class="btn btn-outline" style="font-size:0.82rem;padding:9px 18px;"><i class="fab fa-github"></i> GitHub</a>
-          </div>
-        </div>
-        <div class="project-visual" style="background:linear-gradient(135deg,rgba(167,139,250,0.06),rgba(255,107,107,0.04));">
-          <div class="project-visual-icon">🧬</div>
-          <div class="project-visual-title">Urdu Mini GPT</div>
-          <div class="project-stats">
-            <span class="project-stat">10.8M Params</span>
-            <span class="project-stat">6 Heads</span>
-          </div>
-          <div style="font-size:0.72rem;color:var(--text-muted);margin-top:4px;">384 dim · 256 ctx · 3000 iters</div>
-        </div>
-      </div>
-
-      <!-- Project 3 -->
-      <div class="glass project-card reveal">
-        <div>
-          <div class="project-label"><i class="fas fa-code"></i> Deep Learning</div>
-          <h3 class="project-title">Transformer Architecture from Scratch</h3>
-          <p class="project-desc">Complete encoder-decoder Transformer implemented in PyTorch from first principles — multi-head self-attention, sinusoidal positional encoding, LayerNorm, and residual connections. Every design decision documented with reasoning.</p>
-          <div class="project-tech">
-            <span class="tag">PyTorch</span><span class="tag">Multi-Head Attention</span>
-            <span class="tag mint">Positional Encoding</span><span class="tag purple">Encoder-Decoder</span>
-          </div>
-          <div class="project-links">
-            <a href="https://github.com/zaid-rahim/Transformer-From-Scratch-in-Pytorch" target="_blank" class="btn btn-outline" style="font-size:0.82rem;padding:9px 18px;"><i class="fab fa-github"></i> GitHub</a>
-          </div>
-        </div>
-        <div class="project-visual">
-          <div class="project-visual-icon">🔮</div>
-          <div class="project-visual-title">Transformer Architecture</div>
-          <div class="project-stats">
-            <span class="project-stat">From Scratch</span>
-            <span class="project-stat">Full Impl.</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Project 4 -->
-      <div class="glass project-card reverse reveal">
-        <div>
-          <div class="project-label" style="background:rgba(247,168,196,0.08);border-color:rgba(247,168,196,0.15);color:var(--pink);"><i class="fas fa-users"></i> Team Lead</div>
-          <h3 class="project-title">Fake Signature Detection System</h3>
-          <p class="project-desc">CNN-based binary classifier for handwritten signature verification. Led a 10-member engineering team through the complete ML lifecycle — data preprocessing, model training, hyperparameter tuning, evaluation, and delivery.</p>
-          <div class="project-tech">
-            <span class="tag">CNN</span><span class="tag">PyTorch</span>
-            <span class="tag mint">Computer Vision</span><span class="tag purple">10-Member Team</span>
-          </div>
-        </div>
-        <div class="project-visual" style="background:linear-gradient(135deg,rgba(247,168,196,0.06),rgba(78,205,196,0.04));">
-          <div class="project-visual-icon">✍️</div>
-          <div class="project-visual-title">Signature Detection</div>
-          <div class="project-stats">
-            <span class="project-stat">CNN Binary</span>
-            <span class="project-stat">10-Member Team</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Other Projects -->
-    <div style="margin-top:48px;" class="reveal">
-      <h3 style="font-size:1.2rem;font-weight:700;margin-bottom:24px;color:var(--text-secondary);">Other Projects</h3>
-      <div class="other-projects">
-        <div class="glass other-card">
-          <div class="other-card-title">🔢 Neural Network from Scratch
-            <a href="https://github.com/zaid-rahim/Neural-Network-from-Scratch-NumPy-vs-PyTorch" target="_blank" style="color:var(--text-muted);font-size:0.85rem;"><i class="fab fa-github"></i></a>
-          </div>
-          <div class="other-card-desc">2-layer neural network in raw NumPy (manual backprop), replicated in PyTorch. 96%+ accuracy on Iris.</div>
-          <div class="timeline-tags"><span class="tag">NumPy</span><span class="tag">PyTorch</span><span class="tag mint">Backpropagation</span></div>
-        </div>
-        <div class="glass other-card">
-          <div class="other-card-title">💊 Pharmacy Management System
-            <a href="https://github.com/zaid-rahim/Pharmacy-Management-system" target="_blank" style="color:var(--text-muted);font-size:0.85rem;"><i class="fab fa-github"></i></a>
-          </div>
-          <div class="other-card-desc">Full-stack web app: admin/customer auth, CRUD for medicines/suppliers, stock tracking, expiry alerts, sales reports.</div>
-          <div class="timeline-tags"><span class="tag">PHP</span><span class="tag">MySQL</span><span class="tag mint">Bootstrap</span></div>
-        </div>
-        <div class="glass other-card">
-          <div class="other-card-title">🏎️ F1 Race Outcome Prediction</div>
-          <div class="other-card-desc">Ensemble ML pipeline on F1 telemetry data — Random Forest, Gradient Boosting, Linear Regression with feature engineering.</div>
-          <div class="timeline-tags"><span class="tag">Scikit-learn</span><span class="tag">Random Forest</span><span class="tag mint">Feature Eng.</span></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="section-divider"></div>
-
-<!-- ============ CERTIFICATIONS ============ -->
-<section id="certifications" class="section-pad" style="background:var(--bg-secondary);">
-  <div class="container">
-    <div style="text-align:center;margin-bottom:48px;" class="reveal">
-      <div class="section-label" style="margin:0 auto 16px;display:inline-flex;"><i class="fas fa-certificate"></i> Certifications</div>
-      <h2 class="section-title">Credentials & <span class="gradient-text">Achievements</span></h2>
-    </div>
-    <div class="cert-grid">
-      <div class="glass cert-card reveal">
-        <div class="cert-badge">🤗</div>
-        <div>
-          <div class="cert-provider">Hugging Face · The LLM Course</div>
-          <div class="cert-name">Fundamentals of LLMs</div>
-          <div class="cert-date"><i class="fas fa-calendar-alt"></i> July 2026</div>
-          <div class="timeline-tags" style="margin-top:10px;">
-            <span class="tag">LLM Basics</span><span class="tag mint">Transformers</span><span class="tag purple">NLP</span>
-          </div>
-        </div>
-      </div>
-      <div class="glass cert-card reveal">
-        <div class="cert-badge" style="background:linear-gradient(135deg,var(--mint),#45B7AA);">🤗</div>
-        <div>
-          <div class="cert-provider" style="color:var(--mint);">Hugging Face · The LLM Course</div>
-          <div class="cert-name">Fine-tuning Language Models</div>
-          <div class="cert-date"><i class="fas fa-calendar-alt"></i> July 2026</div>
-          <div class="timeline-tags" style="margin-top:10px;">
-            <span class="tag">LoRA</span><span class="tag mint">QLoRA</span><span class="tag purple">PEFT</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="section-divider"></div>
-
-<!-- ============ LEADERSHIP ============ -->
-<section id="leadership" class="section-pad">
-  <div class="container">
-    <div style="text-align:center;margin-bottom:48px;" class="reveal">
-      <div class="section-label" style="margin:0 auto 16px;display:inline-flex;"><i class="fas fa-users"></i> Leadership</div>
-      <h2 class="section-title">Leadership & <span class="gradient-text">Activities</span></h2>
-    </div>
-    <div class="leadership-grid">
-      <div class="glass leadership-card reveal">
-        <div class="leadership-icon">👨‍💼</div>
-        <div>
-          <div class="leadership-title">AI Team Lead</div>
-          <div class="leadership-desc">Led cross-functional AI & software engineering teams of up to 10 members through full SDLC — requirement analysis, task delegation, milestone tracking, and technical presentations to faculty and institutional stakeholders.</div>
-        </div>
-      </div>
-      <div class="glass leadership-card reveal">
-        <div class="leadership-icon">🏆</div>
-        <div>
-          <div class="leadership-title">Zindagi Prize Entrepreneurship Program</div>
-          <div class="leadership-desc">Campus Round Co-organizer (2024) — Coordinated entrepreneurship program events at FAST NUCES campus, facilitating student participation in Pakistan's leading startup competition.</div>
-        </div>
-      </div>
-      <div class="glass leadership-card reveal">
-        <div class="leadership-icon">🎓</div>
-        <div>
-          <div class="leadership-title">NUETEC University Tech Event</div>
-          <div class="leadership-desc">Volunteer (2023, 2024) — Contributed to organizing university-wide technology events, supporting workshops and technical sessions for the student community.</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="section-divider"></div>
-
-<!-- ============ CONTACT ============ -->
-<section id="contact" class="section-pad" style="background:var(--bg-secondary);">
-  <div class="container">
-    <div style="text-align:center;margin-bottom:48px;" class="reveal">
-      <div class="section-label" style="margin:0 auto 16px;display:inline-flex;"><i class="fas fa-envelope"></i> Contact</div>
-      <h2 class="section-title">Let's <span class="gradient-text">Connect</span></h2>
-      <p class="section-sub" style="margin:0 auto;">Open to opportunities, collaborations, and interesting AI projects.</p>
-    </div>
-    <div class="contact-grid">
-      <div class="glass contact-info reveal">
-        <h3>Get In Touch</h3>
-        <p>Whether you have an exciting AI role, a project idea, or just want to talk about LLMs — I'd love to hear from you.</p>
-        <div class="contact-item">
-          <div class="contact-item-icon"><i class="fas fa-envelope"></i></div>
-          <div class="contact-item-text">
-            <div class="contact-item-label">Email</div>
-            <a href="mailto:zaidrahim162@gmail.com">zaidrahim162@gmail.com</a>
-          </div>
-        </div>
-        <div class="contact-item">
-          <div class="contact-item-icon"><i class="fas fa-phone"></i></div>
-          <div class="contact-item-text">
-            <div class="contact-item-label">Phone</div>
-            <a href="tel:+923439863954">+92 343 9863954</a>
-          </div>
-        </div>
-        <div class="contact-item">
-          <div class="contact-item-icon"><i class="fas fa-map-marker-alt"></i></div>
-          <div class="contact-item-text">
-            <div class="contact-item-label">Location</div>
-            <span style="font-size:0.88rem;">Islamabad, Pakistan</span>
-          </div>
-        </div>
-        <div class="contact-item">
-          <div class="contact-item-icon" style="background:rgba(78,205,196,0.08);border-color:rgba(78,205,196,0.15);color:var(--mint);"><i class="fab fa-linkedin"></i></div>
-          <div class="contact-item-text">
-            <div class="contact-item-label">LinkedIn</div>
-            <a href="https://linkedin.com/in/zaid-rahim-zaid" target="_blank">linkedin.com/in/zaid-rahim-zaid</a>
-          </div>
-        </div>
-        <div class="contact-item">
-          <div class="contact-item-icon" style="background:rgba(167,139,250,0.08);border-color:rgba(167,139,250,0.15);color:var(--purple);"><i class="fab fa-github"></i></div>
-          <div class="contact-item-text">
-            <div class="contact-item-label">GitHub</div>
-            <a href="https://github.com/Zaid-Rahim" target="_blank">github.com/Zaid-Rahim</a>
-          </div>
-        </div>
-        <div style="margin-top:24px;">
-          <a href="mailto:zaidrahim162@gmail.com" class="btn btn-primary" style="width:100%;justify-content:center;">
-            <i class="fas fa-download"></i> Download Resume
-          </a>
-        </div>
-      </div>
-
-      <div class="glass contact-form-wrap reveal">
-        <h3 style="font-size:1.1rem;font-weight:700;margin-bottom:20px;">Send a Message</h3>
-        <form id="contactForm">
-          <div class="form-row">
-            <div class="form-group">
-              <label>Your Name</label>
-              <input type="text" id="from_name" placeholder="John Doe" required>
-            </div>
-            <div class="form-group">
-              <label>Email Address</label>
-              <input type="email" id="from_email" placeholder="john@example.com" required>
-            </div>
-          </div>
-          <div class="form-group">
-            <label>Subject</label>
-            <input type="text" id="subject" placeholder="Job Opportunity / Collaboration..." required>
-          </div>
-          <div class="form-group">
-            <label>Message</label>
-            <textarea id="message" placeholder="Tell me about your project or opportunity..." required></textarea>
-          </div>
-          <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;" id="submitBtn">
-            <i class="fas fa-paper-plane"></i> Send Message
-          </button>
-          <div class="form-success" id="formSuccess">
-            <i class="fas fa-check-circle"></i> Message sent successfully! I'll get back to you soon.
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ FOOTER ============ -->
-<footer>
-  <div class="container">
-    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;">
-      <div class="footer-logo">Zaid Rahim</div>
-      <div class="footer-copy">Designed & Developed by <strong>Zaid Rahim</strong> · AI/ML Engineer</div>
-      <div class="footer-socials">
-        <a href="https://github.com/Zaid-Rahim" target="_blank" class="social-icon"><i class="fab fa-github"></i></a>
-        <a href="https://linkedin.com/in/zaid-rahim-zaid" target="_blank" class="social-icon"><i class="fab fa-linkedin"></i></a>
-        <a href="mailto:zaidrahim162@gmail.com" class="social-icon"><i class="fas fa-envelope"></i></a>
-      </div>
-    </div>
-  </div>
-</footer>
-
-<!-- Back to Top -->
-<button id="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
-  <i class="fas fa-chevron-up"></i>
-</button>
-
-<!-- ============ JS ============ -->
-<script>
-// EmailJS init
-emailjs.init("hPZ0zLbpc9VezXdmP");
-
-// Scroll progress
-window.addEventListener('scroll', () => {
-  const pct = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
-  document.getElementById('scroll-progress').style.width = pct + '%';
-  document.getElementById('back-top').classList.toggle('visible', window.scrollY > 400);
-});
-
-// Cursor glow
-document.addEventListener('mousemove', e => {
-  const g = document.getElementById('cursorGlow');
-  g.style.left = e.clientX + 'px';
-  g.style.top = e.clientY + 'px';
-});
-
-// Hamburger
-const ham = document.getElementById('hamburger');
-const mob = document.getElementById('mobileMenu');
-ham.addEventListener('click', () => mob.classList.toggle('open'));
-mob.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mob.classList.remove('open')));
-
-// Typing animation
-const titles = ['AI/ML Engineer', 'LLM Engineer', 'NLP Specialist', 'Generative AI Developer', 'Backend Engineer', 'AI Researcher'];
-let ti = 0, ci = 0, deleting = false;
-const el = document.getElementById('typedText');
-function type() {
-  const t = titles[ti];
-  el.textContent = deleting ? t.substring(0, ci--) : t.substring(0, ci++);
-  if (!deleting && ci > t.length) { deleting = true; setTimeout(type, 1400); return; }
-  if (deleting && ci < 0) { deleting = false; ti = (ti + 1) % titles.length; }
-  setTimeout(type, deleting ? 50 : 90);
-}
-type();
-
-// Scroll reveal
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-}, { threshold: 0.12 });
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-// Smooth scroll nav
-document.querySelectorAll('a[href^="#"]').forEach(a => {
-  a.addEventListener('click', e => {
-    e.preventDefault();
-    const t = document.querySelector(a.getAttribute('href'));
-    if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  });
-});
-
-// Contact form
-document.getElementById('contactForm').addEventListener('submit', async function(e) {
-  e.preventDefault();
-  const btn = document.getElementById('submitBtn');
-  btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-  btn.disabled = true;
-  try {
-    await emailjs.send("service_q2qje4a", "template_e5ypa79", {
-      from_name: document.getElementById('from_name').value,
-      from_email: document.getElementById('from_email').value,
-      subject: document.getElementById('subject').value,
-      message: document.getElementById('message').value,
-      to_name: "Zaid Rahim"
-    });
-    document.getElementById('formSuccess').style.display = 'block';
-    this.reset();
-    btn.innerHTML = '<i class="fas fa-check"></i> Sent!';
-    setTimeout(() => {
-      btn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Message';
-      btn.disabled = false;
-      document.getElementById('formSuccess').style.display = 'none';
-    }, 4000);
-  } catch(err) {
-    btn.innerHTML = '<i class="fas fa-exclamation"></i> Failed — try email directly';
-    btn.disabled = false;
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Bootstrap: gate all hiding behind .js so no-JS users see everything,
+       run the entrance on DOMContentLoaded, and guarantee content is never
+       stuck hidden if scripts are slow or error out. -->
+  <script>
+    (function () {
+      var d = document, h = d.documentElement;
+      h.classList.add("js");
+      var STATIC = /[?&](static|qa)\b/.test(location.search);
+      function loaded() { if (d.body) d.body.classList.add("loaded"); }
+      if (STATIC) {
+        h.classList.add("ready", "force-reveal", "static-mode");
+        if (d.readyState === "loading") d.addEventListener("DOMContentLoaded", loaded); else loaded();
+        return;
+      }
+      function entrance() { h.classList.add("ready"); loaded(); }
+      if (d.readyState === "loading") d.addEventListener("DOMContentLoaded", function () { setTimeout(entrance, 30); });
+      else setTimeout(entrance, 30);
+      // Crash guard: if main.js never runs, reveal everything anyway.
+      window.__revealNet = setTimeout(function () { h.classList.add("force-reveal"); entrance(); }, 3000);
+    })();
+  </script>
+
+  <title>Zaid Rahim — AI/ML Engineer · LLMs, RAG & Fine-Tuning</title>
+  <meta name="description" content="Zaid Rahim is an AI/ML engineer building production RAG pipelines, fine-tuned LLMs, and Python backends — from attention math written by hand to models shipped behind a FastAPI endpoint." />
+  <meta name="author" content="Zaid Rahim" />
+  <meta name="keywords" content="AI Engineer, ML Engineer, LLM, RAG, Fine-Tuning, QLoRA, NLP, PyTorch, LangChain, LangGraph, FastAPI, Generative AI, Hugging Face" />
+  <meta name="theme-color" content="#0a0a0b" />
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://zaidrahim.me/" />
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Zaid Rahim — AI/ML Engineer" />
+  <meta property="og:description" content="Production RAG pipelines, fine-tuned LLMs, and the Python backends that serve them." />
+  <meta property="og:url" content="https://zaidrahim.me/" />
+  <meta property="og:image" content="https://zaidrahim.me/assets/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Zaid Rahim — AI/ML Engineer" />
+  <meta name="twitter:description" content="Production RAG pipelines, fine-tuned LLMs, and the Python backends that serve them." />
+  <meta name="twitter:image" content="https://zaidrahim.me/assets/og-image.png" />
+
+  <!-- Favicon (inline SVG monogram) -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230a0a0b'/%3E%3Ctext x='16' y='22' font-family='Georgia,serif' font-size='18' fill='%23e3a066' text-anchor='middle'%3EZ%3C/text%3E%3C/svg%3E" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="assets/css/style.css" />
+
+  <!-- EmailJS (client-side contact form) -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js" defer></script>
+
+  <!-- Structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Zaid Rahim",
+    "jobTitle": "AI/ML Engineer",
+    "url": "https://zaidrahim.me/",
+    "email": "mailto:zaidrahim162@gmail.com",
+    "address": { "@type": "PostalAddress", "addressLocality": "Lahore", "addressCountry": "PK" },
+    "alumniOf": "FAST National University of Computer and Emerging Sciences",
+    "knowsAbout": ["Large Language Models", "Retrieval-Augmented Generation", "LLM Fine-Tuning", "QLoRA", "NLP", "PyTorch", "LangChain", "FastAPI"],
+    "sameAs": [
+      "https://github.com/zaid-rahim",
+      "https://www.linkedin.com/in/zaid-rahim-zaid",
+      "https://huggingface.co/zaidrahim162"
+    ]
   }
-});
+  </script>
+</head>
 
-// Responsive exp-edu grid
-function checkGrid() {
-  const g = document.querySelector('.exp-edu-grid');
-  if (g) g.style.gridTemplateColumns = window.innerWidth < 900 ? '1fr' : '1fr 1fr';
-}
-window.addEventListener('resize', checkGrid);
-checkGrid();
-</script>
+<body>
+  <a class="skip-link" href="#hero">Skip to content</a>
+
+  <!-- Background atmosphere -->
+  <div class="bg-layer" aria-hidden="true">
+    <span class="glow glow-1"></span>
+    <span class="glow glow-2"></span>
+    <span class="glow glow-3"></span>
+  </div>
+  <div class="grain" aria-hidden="true"></div>
+  <canvas id="particles" aria-hidden="true"></canvas>
+  <div id="cursor-glow" aria-hidden="true"></div>
+  <div id="progress" aria-hidden="true"></div>
+
+  <!-- Navigation -->
+  <nav id="nav" aria-label="Primary">
+    <div class="nav-inner">
+      <a class="brand" href="#hero" aria-label="Zaid Rahim — home">
+        <span class="mark">Z</span>
+        <span>Zaid Rahim<br /><span class="brand-sub">AI / ML Engineer</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="#work"><span class="idx">01</span>Work</a>
+        <a href="#github"><span class="idx">02</span>GitHub</a>
+        <a href="#experience"><span class="idx">03</span>Experience</a>
+        <a href="#about"><span class="idx">04</span>About</a>
+      </div>
+      <div style="display:flex; align-items:center; gap:0.9rem;">
+        <a class="nav-cta" href="assets/Zaid_Rahim_Resume.pdf" download>
+          Résumé
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+        </a>
+        <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div id="mobile-menu" role="dialog" aria-modal="true" aria-label="Menu">
+    <div id="mobile-menu-mount"></div>
+  </div>
+
+  <main>
+    <!-- ================= HERO ================= -->
+    <header id="hero" class="hero">
+      <div class="wrap hero-grid">
+        <span class="hero-status anim-up">
+          <span class="dot"></span> Open to AI/ML engineering roles
+        </span>
+
+        <div>
+          <p class="hero-name anim-up">Zaid Rahim <span class="sep">/</span> Lahore, Pakistan</p>
+          <h1 class="hero-title">
+            <span class="line"><span>I build LLM systems</span></span>
+            <span class="line"><span>that reason over</span></span>
+            <span class="line"><span><span class="accent-word">real-world data.</span></span></span>
+          </h1>
+        </div>
+
+        <p class="hero-intro anim-up">
+          AI/ML engineer focused on production RAG pipelines, LLM fine-tuning, and the Python
+          backends that serve them — from attention math written by hand to models shipped
+          behind a FastAPI endpoint.
+        </p>
+
+        <div class="hero-actions anim-up">
+          <a class="btn btn-primary" href="#work">
+            View projects
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg>
+          </a>
+          <a class="btn btn-ghost" href="assets/Zaid_Rahim_Resume.pdf" download>
+            Download résumé
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+          </a>
+          <div class="hero-socials">
+            <a class="icon-btn" href="https://github.com/zaid-rahim" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.37.5 0 5.87 0 12.5c0 5.3 3.44 9.8 8.2 11.39.6.11.82-.26.82-.58v-2.03c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.5.99.11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.34-5.47-5.96 0-1.32.47-2.39 1.24-3.23-.12-.31-.54-1.53.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.65.24 2.87.12 3.18.77.84 1.24 1.91 1.24 3.23 0 4.63-2.81 5.65-5.49 5.95.43.37.82 1.1.82 2.22v3.29c0 .32.22.7.83.58A12 12 0 0 0 24 12.5C24 5.87 18.63.5 12 .5Z"/></svg>
+            </a>
+            <a class="icon-btn" href="https://www.linkedin.com/in/zaid-rahim-zaid" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.72v20.55C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.72C24 .77 23.2 0 22.22 0Z"/></svg>
+            </a>
+            <a class="icon-btn" href="https://huggingface.co/zaidrahim162" target="_blank" rel="noopener noreferrer" aria-label="Hugging Face">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a9 9 0 0 0-9 9c0 1.5.4 2.9 1 4.2-.3.4-.5 1-.5 1.5a2.3 2.3 0 0 0 3.4 2 9 9 0 0 0 10.2 0 2.3 2.3 0 0 0 3.4-2c0-.5-.2-1.1-.5-1.5.6-1.3 1-2.7 1-4.2a9 9 0 0 0-9-9Zm-3.4 8a1.2 1.2 0 1 1 0 2.4 1.2 1.2 0 0 1 0-2.4Zm6.8 0a1.2 1.2 0 1 1 0 2.4 1.2 1.2 0 0 1 0-2.4ZM8 15.3c.9.9 2.4 1.5 4 1.5s3.1-.6 4-1.5c.3-.3-.1-.7-.5-.5-1 .5-2.2.8-3.5.8s-2.5-.3-3.5-.8c-.4-.2-.8.2-.5.5Z"/></svg>
+            </a>
+            <a class="icon-btn" href="mailto:zaidrahim162@gmail.com" aria-label="Email">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="hero-stats anim-up" id="hero-stats"></div>
+      </div>
+
+      <div class="scroll-cue" aria-hidden="true">
+        <span>Scroll</span>
+        <span class="bar"></span>
+      </div>
+    </header>
+
+    <!-- ================= FOCUS ================= -->
+    <section id="focus" class="section">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div class="section-eyebrow">
+            <span class="num">01</span><span class="rule"></span><span class="tag">Technical focus</span>
+          </div>
+          <h2 class="section-title">Where I go <em>deep</em></h2>
+          <p class="section-desc">Six areas I keep returning to — the ones I understand from the math up, not just the API down.</p>
+        </div>
+        <div class="focus-grid" id="focus-mount"></div>
+      </div>
+    </section>
+
+    <!-- ================= WORK ================= -->
+    <section id="work" class="section">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div class="section-eyebrow">
+            <span class="num">02</span><span class="rule"></span><span class="tag">Selected work</span>
+          </div>
+          <h2 class="section-title">Projects, as <em>case studies</em></h2>
+          <p class="section-desc">Real systems with real constraints. Expand any project for the problem it solves and what I built.</p>
+        </div>
+        <div class="projects" id="projects-mount"></div>
+      </div>
+    </section>
+
+    <!-- ================= GITHUB ================= -->
+    <section id="github" class="section">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div class="section-eyebrow">
+            <span class="num">03</span><span class="rule"></span><span class="tag">Engineering activity</span>
+          </div>
+          <h2 class="section-title">Built in the <em>open</em></h2>
+          <p class="section-desc">Most of my work lives on GitHub. Here's how it breaks down, plus a few repos beyond the case studies above.</p>
+        </div>
+        <div class="gh-grid">
+          <div class="gh-panel reveal">
+            <h3>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+              Focus by domain
+            </h3>
+            <div class="gh-dist" id="gh-dist"></div>
+            <p class="gh-note">
+              Public repositories, grouped by what they are. Star and fork counts aren't shown —
+              they weren't part of the exported data, and I'd rather show nothing than invent numbers.
+            </p>
+            <a class="link-arrow" style="margin-top:1.4rem" href="https://github.com/zaid-rahim" target="_blank" rel="noopener noreferrer">
+              View full profile
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg>
+            </a>
+          </div>
+          <div class="gh-panel reveal">
+            <h3>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z"/></svg>
+              More repositories
+            </h3>
+            <div class="repo-list" id="gh-repos"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= EXPERIENCE ================= -->
+    <section id="experience" class="section">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div class="section-eyebrow">
+            <span class="num">04</span><span class="rule"></span><span class="tag">Background</span>
+          </div>
+          <h2 class="section-title">Experience &amp; <em>education</em></h2>
+        </div>
+        <div class="xp-grid">
+          <div class="timeline" id="xp-timeline"></div>
+          <div id="xp-side"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SKILLS ================= -->
+    <section id="skills" class="section">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div class="section-eyebrow">
+            <span class="num">05</span><span class="rule"></span><span class="tag">Toolkit</span>
+          </div>
+          <h2 class="section-title">Technical <em>skills</em></h2>
+          <p class="section-desc">Grouped by what they're for — every item here is something I've actually shipped or built with.</p>
+        </div>
+        <div class="skills-grid" id="skills-mount"></div>
+      </div>
+    </section>
+
+    <!-- ================= ABOUT ================= -->
+    <section id="about" class="section">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div class="section-eyebrow">
+            <span class="num">06</span><span class="rule"></span><span class="tag">Profile</span>
+          </div>
+        </div>
+        <div class="about-grid">
+          <p class="about-lead reveal">I got into AI by refusing to treat it as a <span class="accent serif">black box.</span></p>
+          <div class="about-body reveal">
+            <p>I'm a final-year Computer Science student at FAST NUCES, and most of what I know about machine learning I learned by rebuilding it. Before I trusted PyTorch's autograd, I wrote backpropagation by hand in NumPy. Before I called a Transformer, I implemented attention, positional encoding, and residual streams one module at a time. That habit — build it to understand it — is how I work.</p>
+            <p>These days I build systems people can actually use: a RAG assistant that grounds legal answers in 5,000+ real judgments, a 3B model fine-tuned with QLoRA on a single free GPU, semantic search over thousands of documents. I care about the parts that make AI trustworthy — retrieval that cites its sources, inference that can run locally and privately, and backends documented well enough for someone else to pick up.</p>
+            <p>I've also taught operating systems to 30+ students and led engineering teams of up to ten, which taught me that the clearest explanation usually wins. I'm looking for AI/ML engineering work where I can keep shipping real systems.</p>
+            <div class="about-sign"><span class="l"></span> Zaid Rahim · FAST NUCES · 2026</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CONTACT ================= -->
+    <section id="contact" class="section">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div class="section-eyebrow">
+            <span class="num">07</span><span class="rule"></span><span class="tag">Contact</span>
+          </div>
+        </div>
+        <div class="contact-grid">
+          <div class="reveal">
+            <h2 class="contact-title">Let's build <span class="accent serif">something.</span></h2>
+            <p class="contact-body">I'm open to AI/ML engineering roles and interesting collaborations. The fastest way to reach me is email — or send a note below.</p>
+            <div class="contact-links">
+              <a class="contact-link" href="mailto:zaidrahim162@gmail.com">
+                <svg class="lead-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+                <span class="cl-body"><span class="cl-label">Email</span><span class="cl-value">zaidrahim162@gmail.com</span></span>
+                <span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
+              </a>
+              <a class="contact-link" href="https://www.linkedin.com/in/zaid-rahim-zaid" target="_blank" rel="noopener noreferrer">
+                <svg class="lead-ic" viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.72v20.55C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.72C24 .77 23.2 0 22.22 0Z"/></svg>
+                <span class="cl-body"><span class="cl-label">LinkedIn</span><span class="cl-value">in/zaid-rahim-zaid</span></span>
+                <span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
+              </a>
+              <a class="contact-link" href="https://github.com/zaid-rahim" target="_blank" rel="noopener noreferrer">
+                <svg class="lead-ic" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.37.5 0 5.87 0 12.5c0 5.3 3.44 9.8 8.2 11.39.6.11.82-.26.82-.58v-2.03c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.5.99.11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.34-5.47-5.96 0-1.32.47-2.39 1.24-3.23-.12-.31-.54-1.53.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.65.24 2.87.12 3.18.77.84 1.24 1.91 1.24 3.23 0 4.63-2.81 5.65-5.49 5.95.43.37.82 1.1.82 2.22v3.29c0 .32.22.7.83.58A12 12 0 0 0 24 12.5C24 5.87 18.63.5 12 .5Z"/></svg>
+                <span class="cl-body"><span class="cl-label">GitHub</span><span class="cl-value">github.com/zaid-rahim</span></span>
+                <span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
+              </a>
+              <a class="contact-link" href="https://huggingface.co/zaidrahim162" target="_blank" rel="noopener noreferrer">
+                <svg class="lead-ic" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a9 9 0 0 0-9 9c0 1.5.4 2.9 1 4.2-.3.4-.5 1-.5 1.5a2.3 2.3 0 0 0 3.4 2 9 9 0 0 0 10.2 0 2.3 2.3 0 0 0 3.4-2c0-.5-.2-1.1-.5-1.5.6-1.3 1-2.7 1-4.2a9 9 0 0 0-9-9Zm-3.4 8a1.2 1.2 0 1 1 0 2.4 1.2 1.2 0 0 1 0-2.4Zm6.8 0a1.2 1.2 0 1 1 0 2.4 1.2 1.2 0 0 1 0-2.4ZM8 15.3c.9.9 2.4 1.5 4 1.5s3.1-.6 4-1.5c.3-.3-.1-.7-.5-.5-1 .5-2.2.8-3.5.8s-2.5-.3-3.5-.8c-.4-.2-.8.2-.5.5Z"/></svg>
+                <span class="cl-body"><span class="cl-label">Hugging Face</span><span class="cl-value">huggingface.co/zaidrahim162</span></span>
+                <span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
+              </a>
+            </div>
+          </div>
+
+          <form class="form-card reveal" id="contact-form" novalidate>
+            <div class="form-row">
+              <div class="field">
+                <label for="f-name">Name</label>
+                <input id="f-name" name="from_name" type="text" required placeholder="Your name" autocomplete="name" />
+              </div>
+              <div class="field">
+                <label for="f-email">Email</label>
+                <input id="f-email" name="from_email" type="email" required placeholder="you@example.com" autocomplete="email" />
+              </div>
+            </div>
+            <div class="field">
+              <label for="f-subject">Subject</label>
+              <input id="f-subject" name="subject" type="text" placeholder="What's this about?" />
+            </div>
+            <div class="field">
+              <label for="f-message">Message</label>
+              <textarea id="f-message" name="message" rows="5" required placeholder="Tell me a little about it…"></textarea>
+            </div>
+            <button class="btn btn-primary form-submit" id="form-submit" type="submit">
+              Send message
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
+            </button>
+            <div class="form-status" id="form-status" role="status" aria-live="polite"></div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer id="footer">
+    <div class="wrap">
+      <div class="footer-top">
+        <div>
+          <div class="footer-name">Zaid Rahim</div>
+          <div class="footer-tag">AI / ML Engineer · LLMs · RAG · Fine-Tuning</div>
+        </div>
+        <div class="footer-cols">
+          <div class="footer-col">
+            <div class="fc-label">Navigate</div>
+            <a href="#work">Work</a>
+            <a href="#github">GitHub</a>
+            <a href="#experience">Experience</a>
+            <a href="#about">About</a>
+          </div>
+          <div class="footer-col">
+            <div class="fc-label">Elsewhere</div>
+            <a href="https://github.com/zaid-rahim" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+            <a href="https://www.linkedin.com/in/zaid-rahim-zaid" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+            <a href="https://huggingface.co/zaidrahim162" target="_blank" rel="noopener noreferrer">Hugging Face ↗</a>
+            <a href="mailto:zaidrahim162@gmail.com">Email ↗</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© <span id="year">2026</span> Zaid Rahim · Built from scratch, like the models.</p>
+        <a class="to-top" href="#hero">
+          Back to top
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <button id="back-top" aria-label="Back to top">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+  </button>
+
+  <!-- Scripts -->
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/main.js"></script>
 </body>
 </html>
